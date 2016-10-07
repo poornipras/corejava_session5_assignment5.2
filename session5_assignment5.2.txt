@@ -1,0 +1,109 @@
+package mypack;
+
+import java.util.ArrayList;
+
+public interface stack
+{
+public void push(int i);
+public int pop();
+}
+
+class fixedstack implements stack
+{
+	int max;
+	int tos=-1;
+    int a[]=new int[max];
+
+fixedstack(int size)
+{
+	this.max=size;
+}
+	public void push(int i)
+	{
+	if(tos==(max-1))
+	{
+		System.out.println("Stack overflow");
+	}
+	else
+		a[++tos]=i;
+		System.out.println(a[++tos]);
+	}
+	
+	public int pop() 
+	{
+		if(tos<0){
+			System.out.println("Stack underflow");
+		return 0;}
+		else{
+			
+		return a[tos--];}
+	}
+	
+}
+
+class variablestack implements stack
+{
+	int tos=-1;
+	int a[]=new int[max];
+	ArrayList<String> list = new ArrayList<String>(); 	
+	int size = list.size(); 
+	
+variablestack(int i)
+{
+	size=i;
+}
+	
+	public void push(int i)
+	{
+		
+		if(tos==(size-1))
+		{
+			System.out.println("Stack overflow");
+		}
+		else
+			a[++tos]=i;
+			System.out.println(a[++tos]);
+		}
+		
+	}
+
+	@Override
+	public int pop() {
+		if(tos<0){
+			System.out.println("Stack underflow");
+		return 0;}
+		else{
+			
+		return a[tos--];}
+	}
+	
+}
+
+class stackoperation
+{
+	public static void main(String[] args)
+	{
+		fixedstack fs=new fixedstack(10);
+		
+		System.out.println("Adding elements to the stack:");
+		for(int i=0;i<10;i++)
+		{
+			fs.push(i);
+		}
+		System.out.println("Getting elements from the stack");
+		for(int i=0;i<10;i++)
+		{
+			System.out.println(fs.pop());
+		}
+		variablestack vs=new variablestack(10);
+		for(int i=0;i<10;i++)
+		{
+			vs.push(i);
+		}
+		System.out.println("Getting elements from the stack");
+		for(int i=0;i<10;i++)
+		{
+			System.out.println(vs.pop());
+		}
+	}
+}
